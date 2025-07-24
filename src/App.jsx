@@ -11,7 +11,7 @@ import {
 } from './constents';
 import Block from './components/block';
 import PixelBoard from './components/pixelBoard.jsx';
-import { add_pixel } from './store/boardSlice.js';
+import { set_blocks,remove_blocks } from './store/boardSlice.js';
 import { useEffect } from 'react';
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
   const dispatch = useDispatch()
   
   useEffect(() => {
-  setTimeout(()=>{dispatch(add_pixel({coordinates:[3,3], color:1}))},5000)})
+  setTimeout(()=>{dispatch(remove_blocks([{block_x:1,block_y:0, color:1},{block_x:2,block_y:1, color:1},{block_x:1,block_y:3, color:3}]))},5000)})
   return (
       <PixelBoard/>
       // <Board
