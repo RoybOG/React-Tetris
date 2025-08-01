@@ -3,14 +3,14 @@ import { BLOCK_PX_SIZE, BOARD_BLOCK_HEIGHT, BOARD_BLOCK_WIDTH } from "../consten
 
 import Block from "./block";
 import { boardBlocksMatrixSelector } from "../store/staticBlocksSlice";
-import { iterateBlocks } from "../matrixUtils";
+import {  MatrixMethods } from "../matrixUtils";
 
 function StaticBlocks(props) {
   const blocks = useSelector(boardBlocksMatrixSelector);
   console.log(blocks)
   return (<>
         {
-           Array.from(iterateBlocks(blocks),
+           Array.from(MatrixMethods.iterateBlocks.call(blocks),
             ({block_x,block_y,color})=>(<Block key={`${block_x},${block_y}`} block_x = {block_x} block_y = {block_y} color={color}  />)
            ) 
         }
