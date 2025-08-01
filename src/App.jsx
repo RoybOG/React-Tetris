@@ -10,18 +10,26 @@ import {
   BOARD_BLOCK_WIDTH,
 } from './constents';
 import Block from './components/block';
-import PixelBoard from './components/pixelBoard.jsx';
-import { set_blocks,remove_blocks } from './store/boardSlice.js';
+import { set_blocks,remove_blocks } from './store/staticBlocksSlice.js';
 import { useEffect } from 'react';
+import TetrinoSquare from './classes/TetrinoSquare.jsx';
+import Tetrino from './classes/Tetrino.jsx';
+import StaticBlocks from './components/StaticBlocks.jsx';
 
 function App() {
   
   const dispatch = useDispatch()
   
-  useEffect(() => {
-  setTimeout(()=>{dispatch(remove_blocks([{block_x:1,block_y:0, color:1},{block_x:2,block_y:1, color:1},{block_x:1,block_y:3, color:3}]))},5000)})
+   useEffect(() => {
+   setTimeout(()=>{dispatch(remove_blocks([{block_x:1,block_y:19, color:1},{block_x:2,block_y:1, color:1},{block_x:1,block_y:3, color:3}]))},5000)})
   return (
-      <PixelBoard/>
+    <Board
+        height={BOARD_BLOCK_HEIGHT * BLOCK_PX_SIZE + 'px'}
+        width={BOARD_BLOCK_WIDTH * BLOCK_PX_SIZE + 'px'}>
+          
+      <StaticBlocks />
+      <TetrinoSquare color= {1}  tetrino_x={3}/>
+      </Board>
       // <Board
       //   height={BOARD_BLOCK_HEIGHT * BLOCK_PX_SIZE + 'px'}
       //   width={BOARD_BLOCK_WIDTH * BLOCK_PX_SIZE + 'px'}

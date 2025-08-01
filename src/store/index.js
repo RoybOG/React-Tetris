@@ -1,14 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
-import boardReducer from './boardSlice';
+import boardReducer from './staticBlocksSlice';
 import scoreReducer from './scoreSlice';
 import {enableMapSet} from "immer"
 
-enableMapSet()
 
 
 export const store = configureStore({
   reducer: {
-    board: boardReducer,
+    staticBlocks: boardReducer,
     score: scoreReducer,
   },
 });
