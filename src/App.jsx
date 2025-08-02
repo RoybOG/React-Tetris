@@ -2,7 +2,6 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import './App.css';
 
-import Snake from './components/snake.jsx';
 import Board from './components/board.jsx';
 import {
   BLOCK_PX_SIZE,
@@ -12,9 +11,9 @@ import {
 import Block from './components/block';
 import { set_blocks,remove_blocks } from './store/staticBlocksSlice.js';
 import { useEffect } from 'react';
-import TetrinoSquare from './classes/TetrinoSquare.jsx';
-import Tetrino from './classes/Tetrino.jsx';
+import Tetromino from './classes/Tetromino.jsx';
 import StaticBlocks from './components/StaticBlocks.jsx';
+import { TetrominoStructures } from './utils/tetrominoUtils.js';
 
 function App() {
   
@@ -28,7 +27,7 @@ function App() {
         width={BOARD_BLOCK_WIDTH * BLOCK_PX_SIZE + 'px'}>
           
       <StaticBlocks />
-      <TetrinoSquare color= {1}  tetrino_x={3}/>
+      <Tetromino color= {1}  Tetromino_x={3} rotations={TetrominoStructures.L}/>
       </Board>
       // <Board
       //   height={BOARD_BLOCK_HEIGHT * BLOCK_PX_SIZE + 'px'}

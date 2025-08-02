@@ -1,4 +1,4 @@
-export const GAMESPEED = 1000;
+export const GAMESPEED = 1000//1000;
 export const SCALE = 2;
 export const BLOCK_SIZE = 16; //IN_UNITS
 

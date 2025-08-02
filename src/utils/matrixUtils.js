@@ -2,7 +2,7 @@ import { isNumber, max_null, min_null } from "./utils";
 
 
 /**
- * I decided to save this in a matrix.
+ * I decided to save pixel blocks in a matrix.
  * It's actaucally methodaiclly simular to a 2d array, in both, an x value is linked to all the ys if there's a point at (x,y).
  * In a 2D array, an x value is linked to an array of all y values, and in my matrix an x key is linked to an object with its keys being y values.
  * The advantage of the matrix is it only saves y values that have a point.
@@ -71,18 +71,33 @@ export const MatrixMethods = {
             }
       },
 
-    iterateBlocks:function* (from_a_certain_y=null){
+    iterateBlocks:function* (){
         for(let [block_x, ys_in_x ] of Object.entries(this.blocks)){
             
             for(let [block_y,color ] of Object.entries( ys_in_x)){
                   block_x = Number(block_x);
                   block_y= Number(block_y)
 
-                if(typeof from_a_certain_y === "number" && from_a_certain_y !== block_y){
-                  continue;
-                }
+                
                 
                 yield ({block_x,block_y,color});
+                
+            }
+        }
+      },
+
+      xValuesFromY:function* (from_a_certain_y=null){
+        for(let [block_x, ys_in_x ] of Object.entries(this.blocks)){
+            
+            for(let [block_y,color ] of Object.entries( ys_in_x)){
+                  block_x = Number(block_x);
+                  block_y= Number(block_y)
+
+                if(typeof from_a_certain_y === "number" && from_a_certain_y == block_y){
+                 yield block_x
+                }
+                
+                
                 
             }
         }
@@ -108,4 +123,5 @@ export function newMatrix(blocks_arr=null){
 
   return matrix;
 }
+
 

@@ -1,22 +1,12 @@
 import { createSelector, createSlice } from '@reduxjs/toolkit';
 import { BOARD_BLOCK_HEIGHT, BOARD_BLOCK_WIDTH } from '../constents';
-import { MatrixMethods,newMatrix } from '../matrixUtils';
-
-
-
+import { MatrixMethods,newMatrix } from '../utils/matrixUtils';
 
 
 const initialState = {
   board_blocks_matrix: newMatrix([{block_x:1, block_y:19, color:2},{block_x:2, block_y:19, color:2},{block_x:3, block_y:19, color:2},{block_x:2, block_y:18, color:2}])
 }
 
-
-
-
-
-console.log(JSON.stringify(initialState))
-
-/*console.log(Array.from(initialState.board_blocks_matrix.iterateBlocks(19)))*/
 
 export const boardSlice = createSlice({
   name: 'staticBlocks',
@@ -34,11 +24,7 @@ export const boardSlice = createSlice({
     },
 });
 
-
-
 export const boardBlocksMatrixSelector = (state)=>(state.staticBlocks.board_blocks_matrix)
-
-
 
 export const {clear_board,remove_blocks,set_blocks} = boardSlice.actions;
 export default boardSlice.reducer;
