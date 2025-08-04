@@ -1,4 +1,4 @@
-import { isNumber, max_null, min_null } from "./utils";
+import { do_ranges_overlap, find_new_max_key, isNumber, max_null, min_null } from "./utils";
 
 
 /**
@@ -62,8 +62,25 @@ export const MatrixMethods = {
         }
         
       }
+
+     
     },
-    iterateBlocksFromX: function* (x){
+
+    /**
+     * 
+     * @param {*} other 
+     * @param {*} offsetToCheck offset of the current matrix if you wish to check collition in a relative position
+     * @returns 
+     */
+    collidesWithMatrixBox: function(other, offsetToCheck){
+      // console.log(this)
+      const cordsToCheck = [(offsetToCheck[0] + this.offset[0]), (offsetToCheck[1] + this.offset[1])]
+
+      return do_ranges_overlap(this.minX + cordsToCheck[0], this.maxX + cordsToCheck[0], other.minX + other.offset[0], other.maxX + other.offset[0] ) &&
+            do_ranges_overlap(this.minY  + cordsToCheck[1], this.maxY + cordsToCheck[1], other.minY + other.offset[1], other.maxY  + other.offset[1])
+        }
+
+    ,iterateBlocksFromX: function* (x){
             for(let [block_y,color ] of Object.entries(this.blocks[x])){
                   block_x = Number(block_x);
                   block_y= Number(block_y)

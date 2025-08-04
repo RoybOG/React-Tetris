@@ -6,11 +6,11 @@ import { boardBlocksMatrixSelector } from "../store/staticBlocksSlice";
 import {  MatrixMethods } from "../utils/matrixUtils";
 
 function StaticBlocks(props) {
-  const blocks = useSelector(boardBlocksMatrixSelector);
+  const matrix = useSelector(boardBlocksMatrixSelector);
   // console.log(blocks)
   return (<>
         {
-           Array.from(MatrixMethods.iterateBlocks.call(blocks),
+           Array.from(MatrixMethods.iterateBlocks.call(matrix),
             ({block_x,block_y,color})=>(<Block key={`${block_x},${block_y}`} block_x = {block_x} block_y = {block_y} color={color}  />)
            ) 
         }

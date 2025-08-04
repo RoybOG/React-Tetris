@@ -20,7 +20,8 @@ function App() {
   const dispatch = useDispatch()
   
    useEffect(() => {
-   setTimeout(()=>{dispatch(set_blocks([{block_x:4,block_y:19, color:3}]))},5000)})
+    // setTimeout(()=>{dispatch(remove_blocks([{block_x:3, block_y:19}]))},5000)
+  })
   return (
     <Board
         height={BOARD_BLOCK_HEIGHT * BLOCK_PX_SIZE + 'px'}

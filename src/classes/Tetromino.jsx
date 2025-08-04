@@ -2,6 +2,7 @@ import { Component } from 'react';
 import {  MatrixMethods } from '../utils/matrixUtils';
 import Block from '../components/block';
 import { BOARD_BLOCK_HEIGHT } from '../constents';
+import { connect } from 'react-redux';
 
 class Tetromino extends Component {
   constructor(props) {
@@ -22,17 +23,38 @@ class Tetromino extends Component {
 
     this.move_down = ()=>{ //excecuting twice every time, check why
       
-      if(this.state.Tetromino_y < BOARD_BLOCK_HEIGHT-6){
-        console.log(`in height ${this.state.Tetromino_y}: moving down`)
-        this.setState(prevState =>(
+        this.setState(prevState =>{
+          
+          this.tetrinoSpriteMatrix.offset = [prevState.Tetromino_x, prevState.Tetromino_y] //updates the offset with x and y value
+        
+          if(MatrixMethods.collidesWithMatrixBox.call(this.tetrinoSpriteMatrix, this.props.statixBlocksMatrix,[0,1])){ //if future position enters the area of static blocks
+            console.log( "coliding")
+
+            //do expensive blocks checking. Its okay the expensive check would be O(n) since it would only happen once the piece is near the static blocks.
+            //convert to static block
+            return {}
+          }
+
+          if(prevState.Tetromino_y == BOARD_BLOCK_HEIGHT - (this.tetrinoSpriteMatrix.maxY + 1)){ //if reached already bottom of board
+            console.log("landed")
+            //convert to static block
+            return {}
+          }
+          console.log(`in height ${prevState.Tetromino_y}: moving down`)
+
+          return (
           {
             Tetromino_y: (prevState.Tetromino_y + 1 ),
-            rotation_index: (prevState.rotation_index + 1) % this.rotations.length
-
-        }))
-      }
+            // rotation_index: (prevState.rotation_index + 1) % this.rotations.length
+          })
+      })
+      
     }
     console.log(JSON.stringify(this.rotations))
+  }
+
+  get tetrinoSpriteMatrix(){
+    return this.rotations[this.state.rotation_index]
   }
 
     componentDidMount(){
@@ -55,9 +77,9 @@ class Tetromino extends Component {
 
 
     render(){
-        console.log('rendering Tetromino')
+        // console.log('rendering Tetromino')
         return (<>{
-           Array.from(MatrixMethods.iterateBlocks.call( this.rotations[this.state.rotation_index]),
+           Array.from(MatrixMethods.iterateBlocks.call(this.tetrinoSpriteMatrix ),
             ({block_x:relative_x,block_y:relative_y})=>{
               let block_x = relative_x+ this.state.Tetromino_x;
               let block_y = relative_y + this.state.Tetromino_y;
@@ -69,4 +91,6 @@ class Tetromino extends Component {
 
 }
 
-export default Tetromino
+export default connect((state)=>({
+  statixBlocksMatrix: state.staticBlocks.board_blocks_matrix
+}))(Tetromino)
