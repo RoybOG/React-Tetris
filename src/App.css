@@ -15,4 +15,5 @@
   padding: 0;
   border: black 3px solid;
   background-color: #1e1454;
+  overflow: hidden;
 }

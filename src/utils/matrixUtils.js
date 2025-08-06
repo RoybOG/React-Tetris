@@ -73,11 +73,9 @@ export const MatrixMethods = {
      * @returns 
      */
     collidesWithMatrixBox: function(other, offsetToCheck){
-      // console.log(this)
-      const cordsToCheck = [(offsetToCheck[0] + this.offset[0]), (offsetToCheck[1] + this.offset[1])]
-
-      return do_ranges_overlap(this.minX + cordsToCheck[0], this.maxX + cordsToCheck[0], other.minX + other.offset[0], other.maxX + other.offset[0] ) &&
-            do_ranges_overlap(this.minY  + cordsToCheck[1], this.maxY + cordsToCheck[1], other.minY + other.offset[1], other.maxY  + other.offset[1])
+      
+      return do_ranges_overlap(this.minX + offsetToCheck[0], this.maxX + offsetToCheck[0], other.minX , other.maxX  ) &&
+            do_ranges_overlap(this.minY  + offsetToCheck[1], this.maxY + offsetToCheck[1], other.minY , other.maxY )
         }
 
     ,iterateBlocksFromX: function* (x){
@@ -118,9 +116,26 @@ export const MatrixMethods = {
                 
             }
         }
-      }
+      },
+      cordInMatrix: function(cordX, cordY){
+        return this.blocks?.[cordX]?.[cordY] != null //I have a color that's 0, which its boolean is false. 
+         
+      },
+      
+      
   }
 
+export function collidesWithOther(matrix,other,matrixXOffset=0, matrixYOffset=0){ 
+      for(let {block_x,block_y} of MatrixMethods.iterateBlocks.call(matrix)){
+        // console.log(`checking (${block_x + x_offset},${block_y + y_offset})` )
+            if (MatrixMethods.cordInMatrix.call(other, block_x + matrixXOffset , block_y + matrixYOffset)){
+              return true
+            }
+        }
+      
+        return false
+      
+    }
 
 export function newMatrix(blocks_arr=null){
   let matrix = {

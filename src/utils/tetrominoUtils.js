@@ -33,7 +33,7 @@ export const TetrominoStructures = {
       [{block_x:0, block_y:1},{block_x:1, block_y:1},{block_x:2, block_y:1,},{block_x:2, block_y:2}]]),
 
     S: newTetromino([[{block_x:0, block_y:1},{block_x:1, block_y:0},{block_x:2, block_y:0,},{block_x:1, block_y:1}],
-                     [{block_x:1, block_y:0},{block_x:2, block_y:2},{block_x:1, block_y:1,},{block_x:2, block_y:1}]]),
+                     [{block_x:0, block_y:0},{block_x:1, block_y:2},{block_x:0, block_y:1,},{block_x:1, block_y:1}]]),
 
     Z: newTetromino([[{block_x:0, block_y:0},{block_x:1, block_y:0},{block_x:2, block_y:1,},{block_x:1, block_y:1}],
                       [{block_x:1, block_y:2},{block_x:2, block_y:0},{block_x:1, block_y:1,},{block_x:2, block_y:1}]]),

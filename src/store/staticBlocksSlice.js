@@ -5,7 +5,7 @@ import { find_new_max_key, find_new_min_key } from '../utils/utils';
 
 
 const initialState = {
-  board_blocks_matrix: newMatrix([{block_x:1, block_y:19, color:2}, {block_x:2, block_y:19, color:2},{block_x:0, block_y:19, color:2},{block_x:2, block_y:18, color:2}])
+  board_blocks_matrix: newMatrix([{block_x:3, block_y:19, color:2},{block_x:3, block_y:18, color:2},{block_x:3, block_y:17, color:2},{block_x:3, block_y:16, color:2}, {block_x:3, block_y:15, color:2},{block_x:0, block_y:19, color:2},{block_x:3, block_y:14, color:2}])
 }
 
 
