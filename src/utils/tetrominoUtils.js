@@ -1,4 +1,6 @@
+import { COLORS } from "../constents";
 import { MatrixMethods, newMatrix } from "./matrixUtils";
+import { pickFromArr, pickNumberUpTo } from "./utils";
 
 export function newTetromino(rotationBlocks){
   const rotationMatricies = rotationBlocks.map((blocks)=>{
@@ -42,4 +44,12 @@ export const TetrominoStructures = {
                      [{block_x:0, block_y:0},{block_x:0, block_y:1},{block_x:0, block_y:2},{block_x:0, block_y:3}],
                     [{block_x:-1, block_y:1},{block_x:0, block_y:1},{block_x:1, block_y:1},{block_x:2, block_y:1}]]) //negative to offset the shape from the starting, reminder to limit piece placement])
     
+}
+
+
+export function generateNewTetrino(){
+  return {
+    rotations: TetrominoStructures[pickFromArr(Object.keys(TetrominoStructures))],
+    color: pickNumberUpTo(COLORS.length)  
+  }
 }

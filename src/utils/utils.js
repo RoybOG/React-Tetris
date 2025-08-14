@@ -50,11 +50,23 @@ export function find_new_min_key(obj, prev_min_key, max_key){ //Finds the curren
             }
         }
     }
-    
 
     return null;
 }
 
 export function do_ranges_overlap(aMin,aMax, bMin, bMax){
     return !(aMin>bMax||aMax<bMin)
+}
+
+/**
+ * Picks a number from 0 to m.
+ * @param {*} m  a natural number
+ * @returns a random natural number from 0 to m.
+ */
+export function pickNumberUpTo(m){ 
+    return Math.floor(Math.random()*m)
+}
+export function pickFromArr(arr){
+    let randomIndex = pickNumberUpTo(arr.length);
+    return arr[randomIndex]
 }

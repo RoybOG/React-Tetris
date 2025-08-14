@@ -1,5 +1,5 @@
 import { createSelector, createSlice } from '@reduxjs/toolkit';
-import { BOARD_BLOCK_HEIGHT, BOARD_BLOCK_WIDTH } from '../constents';
+import { BOARD_BLOCK_HEIGHT, BOARD_BLOCK_WIDTH, gameActions } from '../constents';
 import { MatrixMethods,newMatrix } from '../utils/matrixUtils';
 import { find_new_max_key, find_new_min_key } from '../utils/utils';
 
@@ -30,6 +30,14 @@ export const boardSlice = createSlice({
       state.board_blocks_matrix.maxY = state.board_blocks_matrix.maxY-1
     }*/
     },
+    extraReducers: (builder)=>{
+      builder.addCase(gameActions.reset,(state,action)=>{
+        state.board_blocks_matrix = newMatrix();
+      }),
+      builder.addCase(gameActions.tetrominoLanded, (state,action)=>{
+        MatrixMethods.setBlocks.call(state.board_blocks_matrix, action.payload)
+      })
+    }
 });
 
 export const boardBlocksMatrixSelector = (state)=>(state.staticBlocks.board_blocks_matrix)

@@ -28,7 +28,7 @@ function App() {
         width={BOARD_BLOCK_WIDTH * BLOCK_PX_SIZE + 'px'}>
           
       <StaticBlocks />
-      <Tetromino color= {1}  Tetromino_x={1} Tetromino_y={5} rotations={TetrominoStructures.I}/>
+      <Tetromino color= {1}  Tetromino_x={1} rotations={TetrominoStructures.I}/>
       </Board>
       // <Board
       //   height={BOARD_BLOCK_HEIGHT * BLOCK_PX_SIZE + 'px'}

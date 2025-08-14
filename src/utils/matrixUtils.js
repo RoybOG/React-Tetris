@@ -6,7 +6,11 @@ import { do_ranges_overlap, find_new_max_key, isNumber, max_null, min_null } fro
  * It's actaucally methodaiclly simular to a 2d array, in both, an x value is linked to all the ys if there's a point at (x,y).
  * In a 2D array, an x value is linked to an array of all y values, and in my matrix an x key is linked to an object with its keys being y values.
  * The advantage of the matrix is it only saves y values that have a point.
- * @returns 
+ * 
+ * This is espacially true in regards to the tetrino pieces.
+ * each tetrino is made of just 4 blocks, so instead of saving them with all the empty blocks in a 2D array that surrend them, the matrix only has to save 4 blocks. 
+ * This makes colision checking way faster becuase it doesn't have to ignore empty blocks first.
+ * 
  */
 
 
@@ -53,7 +57,6 @@ export const MatrixMethods = {
 
 
       for(let block of blocks_to_remove){
-
         if(block.block_x in this.blocks){
           delete this.blocks[block.block_x][block.block_y]; 
           if(Object.keys(this.blocks[block.block_x]).length == 0){
@@ -121,6 +124,10 @@ export const MatrixMethods = {
         return this.blocks?.[cordX]?.[cordY] != null //I have a color that's 0, which its boolean is false. 
          
       },
+
+      
+
+      
       
       
   }
@@ -136,6 +143,11 @@ export function collidesWithOther(matrix,other,matrixXOffset=0, matrixYOffset=0)
         return false
       
     }
+
+export function combineMatricies(matrix, other){
+
+    MatrixMethods.iterateBlocks.call(this.tetrinoSpriteMatrix )
+}
 
 export function newMatrix(blocks_arr=null){
   let matrix = {
