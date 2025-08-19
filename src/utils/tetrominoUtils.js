@@ -16,7 +16,7 @@ export const TetrominoStructures = {
     O: newTetromino([[{block_x:0, block_y:0},{block_x:1, block_y:0},{block_x:0, block_y:1,},{block_x:1, block_y:1}]]),
 
     T: newTetromino([[{block_x:0, block_y:0},{block_x:1, block_y:0},{block_x:2, block_y:0,},{block_x:1, block_y:1}],
-                      [{block_x:2, block_y:2},{block_x:2, block_y:0},{block_x:1, block_y:1,},{block_x:2, block_y:1}],
+                      [{block_x:1, block_y:2},{block_x:1, block_y:0},{block_x:0, block_y:1,},{block_x:1, block_y:1}],
                       [{block_x:0, block_y:1},{block_x:1, block_y:1},{block_x:2, block_y:1,},{block_x:1, block_y:0}],
                       [{block_x:0, block_y:2},{block_x:0, block_y:0},{block_x:1, block_y:1,},{block_x:0, block_y:1}],
                       
@@ -47,9 +47,28 @@ export const TetrominoStructures = {
 }
 
 
+// function *testSeries(shapesArr){
+//   for(let shape in shapesArr){
+//     yield shape
+//   }
+
+/// }
+
+//export const testArr = [TetrominoStructures.I,]
+
+export function predictableGen(i){
+  const t = Array.from(Object.keys(TetrominoStructures));
+  //const t = ['S','O']
+  i = i % t.length;
+  console.log('generating ' + t[i])
+  
+  return {rotations:TetrominoStructures[t[i]], color: 0}
+}
+
 export function generateNewTetrino(){
+
   return {
-    rotations: TetrominoStructures[pickFromArr(Object.keys(TetrominoStructures))],
+    rotations:  TetrominoStructures[pickFromArr(Object.keys(TetrominoStructures))], //TetrominoStructures.I,
     color: pickNumberUpTo(COLORS.length)  
   }
 }

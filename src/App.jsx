@@ -7,6 +7,7 @@ import {
   BLOCK_PX_SIZE,
   BOARD_BLOCK_HEIGHT,
   BOARD_BLOCK_WIDTH,
+  INITIAL_TETROMINO_X,
 } from './constents';
 import Block from './components/block';
 import { set_blocks,remove_blocks } from './store/staticBlocksSlice.js';
@@ -28,7 +29,7 @@ function App() {
         width={BOARD_BLOCK_WIDTH * BLOCK_PX_SIZE + 'px'}>
           
       <StaticBlocks />
-      <Tetromino color= {1}  Tetromino_x={1} rotations={TetrominoStructures.I}/>
+      <Tetromino color= {1}  Tetromino_x={INITIAL_TETROMINO_X} rotations={TetrominoStructures.I}/>
       </Board>
       // <Board
       //   height={BOARD_BLOCK_HEIGHT * BLOCK_PX_SIZE + 'px'}

@@ -4,14 +4,15 @@ import { Provider } from 'react-redux';
 import { store } from './store';
 import './index.css';
 import App from './App.jsx';
-import { GAMESPEED } from './constents.js';
+import { GAMETICKSPEED } from './constents.js';
 
 let clockEvent = new Event('gameClock');
 
 function gameSetup() {
   setInterval(() => {
+    //console.log('tick')
     document.dispatchEvent(clockEvent);
-  }, GAMESPEED);
+  }, GAMETICKSPEED);
 
   // document.addEventListener('gameClock', () => {
   //   console.log('clock fired!');
